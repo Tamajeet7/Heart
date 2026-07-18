@@ -44,8 +44,8 @@
       const norm = dist / MAX_DIST;
       const edgeFactor = 1 - Math.min(norm, 1);
 
-      const baseSize = 0.3 + Math.random() * 0.7;
-      const size = baseSize * (0.08 + 0.92 * Math.pow(edgeFactor, 2.5));
+      const baseSize = 0.5 + Math.random() * 0.8;
+      const size = baseSize * (0.1 + 0.9 * Math.pow(edgeFactor, 2.5));
 
       particles.push({
         x, y, size,
@@ -61,7 +61,7 @@
     for (let layer = 0; layer < LAYERS; layer++) {
       const frac = layer / (LAYERS - 1);
       const scale = 1 - frac * 0.94;
-      const count = Math.floor(400 - frac * 100);
+      const count = Math.floor(500 - frac * 150);
       const jitter = scale * (0.08 + frac * 0.15);
       for (let i = 0; i < count; i++) {
         const t = Math.random() * 2 * Math.PI;
