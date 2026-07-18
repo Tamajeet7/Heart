@@ -44,8 +44,8 @@
       const norm = dist / MAX_DIST;
       const edgeFactor = 1 - Math.min(norm, 1);
 
-      const baseSize = 0.4 + Math.random() * 0.8;
-      const size = baseSize * (0.1 + 0.9 * Math.pow(edgeFactor, 0.6));
+      const baseSize = 0.15 + Math.random() * 0.35;
+      const size = baseSize * (0.04 + 0.96 * Math.pow(edgeFactor, 2.5));
 
       particles.push({
         x, y, size,
@@ -57,23 +57,23 @@
       });
     }
 
-    const LAYERS = 12;
+    const LAYERS = 18;
     for (let layer = 0; layer < LAYERS; layer++) {
       const frac = layer / LAYERS;
-      const scale = 1 - frac * 0.82;
-      const count = Math.floor(500 * (0.2 + 0.8 * (1 - frac)));
-      const jitter = 0.3 + frac * 1.2;
+      const scale = 1 - frac * 0.88;
+      const count = Math.floor(600 * (0.3 + 0.7 * (1 - frac)));
+      const jitter = 0.2 + frac * 1.0;
       for (let i = 0; i < count; i++) {
-        const t = (i / count) * 2 * Math.PI + (Math.random() - 0.5) * 0.1;
+        const t = (i / count) * 2 * Math.PI + (Math.random() - 0.5) * 0.08;
         const x = hx(t) * scale + (Math.random() - 0.5) * jitter;
         const y = -hy(t) * scale + (Math.random() - 0.5) * jitter;
         addP(x, y);
       }
     }
 
-    for (let i = 0; i < 600; i++) {
-      const t = (i / 600) * 2 * Math.PI;
-      addP(hx(t) + (Math.random() - 0.5) * 0.6, -hy(t) + (Math.random() - 0.5) * 0.6);
+    for (let i = 0; i < 800; i++) {
+      const t = (i / 800) * 2 * Math.PI;
+      addP(hx(t) + (Math.random() - 0.5) * 0.5, -hy(t) + (Math.random() - 0.5) * 0.5);
     }
 
     let time = 0;
@@ -86,7 +86,7 @@
 
       const cx = W / 2;
       const cy = H / 2;
-      const s = Math.min(W, H) * 0.022;
+      const s = Math.min(W, H) * 0.014;
 
       for (const p of particles) {
         const pulse = 1 + 0.03 * Math.sin(time * 2.6 * p.speed + p.phase);
