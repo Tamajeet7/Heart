@@ -37,7 +37,7 @@
     }
 
     const MAX_DIST = 18;
-    const TOTAL = 11000;
+    const TOTAL = 9000;
     const data = new Float32Array(TOTAL * 8);
     const colorCache = new Array(TOTAL);
 
@@ -66,11 +66,11 @@
       idx++;
     }
 
-    const LAYERS = 16;
+    const LAYERS = 14;
     for (let layer = 0; layer < LAYERS; layer++) {
       const frac = layer / (LAYERS - 1);
       const s = 1 - frac * 0.93;
-      const count = Math.floor(800 - frac * 300);
+      const count = Math.floor(700 - frac * 300);
       const jitter = s * (0.08 + frac * 0.15);
       for (let i = 0; i < count; i++) {
         const t = Math.random() * 2 * Math.PI;
@@ -81,7 +81,7 @@
       }
     }
 
-    for (let i = 0; i < 1200; i++) {
+    for (let i = 0; i < 1000; i++) {
       const t = Math.random() * 2 * Math.PI;
       addP(
         hx(t) + (Math.random() - 0.5) * 0.15,
@@ -99,7 +99,7 @@
 
       const cx = W / 2;
       const cy = H / 2;
-      const s = Math.min(W, H) * 0.025;
+      const s = Math.min(W, H) * 0.028;
 
       for (let i = 0; i < idx; i++) {
         const off = i * 8;
@@ -113,8 +113,10 @@
         const py = cy + y * s * sc;
         const r = Math.max(1, size * s * sc);
 
+        ctx.beginPath();
+        ctx.arc(px, py, r, 0, Math.PI * 2);
         ctx.fillStyle = colorCache[i];
-        ctx.fillRect(px - r, py - r, r * 2, r * 2);
+        ctx.fill();
       }
 
       requestAnimationFrame(draw);
