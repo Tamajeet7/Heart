@@ -45,7 +45,7 @@
       const edgeFactor = 1 - Math.min(norm, 1);
 
       const baseSize = 0.3 + Math.random() * 0.7;
-      const size = baseSize * (0.03 + 0.97 * Math.pow(edgeFactor, 3));
+      const size = baseSize * (0.08 + 0.92 * Math.pow(edgeFactor, 2.5));
 
       particles.push({
         x, y, size,
