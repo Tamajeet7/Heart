@@ -37,7 +37,7 @@
     }
 
     const MAX_DIST = 18;
-    const TOTAL = 9000;
+    const TOTAL = 8500;
     const data = new Float32Array(TOTAL * 8);
     const colorCache = new Array(TOTAL);
 
@@ -46,12 +46,12 @@
       const dist = Math.sqrt(x * x + y * y);
       const norm = dist / MAX_DIST;
       const edgeFactor = 1 - Math.min(norm, 1);
-      const baseSize = 0.2 + Math.random() * 0.45;
-      const size = baseSize * (0.05 + 0.95 * Math.pow(edgeFactor, 2));
+      const baseSize = 0.3 + Math.random() * 0.5;
+      const size = baseSize * (0.06 + 0.94 * Math.pow(edgeFactor, 2));
 
       const hue = 325 + Math.random() * 30;
       const light = 55 + Math.random() * 35;
-      const alpha = 0.4 + Math.random() * 0.6;
+      const alpha = 0.5 + Math.random() * 0.5;
 
       const i = idx * 8;
       data[i] = x;
@@ -66,12 +66,12 @@
       idx++;
     }
 
-    const LAYERS = 14;
+    const LAYERS = 18;
     for (let layer = 0; layer < LAYERS; layer++) {
       const frac = layer / (LAYERS - 1);
-      const s = 1 - frac * 0.93;
-      const count = Math.floor(700 - frac * 300);
-      const jitter = s * (0.08 + frac * 0.15);
+      const s = 1 - frac * 0.94;
+      const count = Math.floor(500 - frac * 100);
+      const jitter = s * (0.08 + frac * 0.12);
       for (let i = 0; i < count; i++) {
         const t = Math.random() * 2 * Math.PI;
         addP(
@@ -81,7 +81,7 @@
       }
     }
 
-    for (let i = 0; i < 1000; i++) {
+    for (let i = 0; i < 600; i++) {
       const t = Math.random() * 2 * Math.PI;
       addP(
         hx(t) + (Math.random() - 0.5) * 0.15,
@@ -99,7 +99,7 @@
 
       const cx = W / 2;
       const cy = H / 2;
-      const s = Math.min(W, H) * 0.028;
+      const s = Math.min(W, H) * 0.024;
 
       for (let i = 0; i < idx; i++) {
         const off = i * 8;
@@ -111,7 +111,7 @@
         const sc = beat * pulse;
         const px = cx + x * s * sc;
         const py = cy + y * s * sc;
-        const r = Math.max(1, size * s * sc);
+        const r = Math.max(0.5, size * s * sc);
 
         ctx.beginPath();
         ctx.arc(px, py, r, 0, Math.PI * 2);
